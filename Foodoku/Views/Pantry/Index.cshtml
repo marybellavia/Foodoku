@@ -1,22 +1,59 @@
-﻿@model List<Foodoku.Models.GroceryItem>
+﻿@model Foodoku.ViewModels.AddPantryItemViewModel
 
-
-<h1>@ViewBag.title</h1>
-
-@if (Model.Count == 0)
-{
-    <p>No pantry items yet.</p>
-}
-<table class="table">
-    <tr>
-        <th>Name</th>
-    </tr>
-    @foreach (var grocItem in Model)
-    {
-        <tr>
-
-            <td>@grocItem.Name</td>
-        </tr>
-    }
-</table>
-<a asp-controller="Pantry" asp-action="Add"><button type="button" class="btn btn-secondary text-dark">Add Item to Pantry</button></a>
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h1 class="text-center">@ViewBag.title0</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <div class="card">
+                <h3 class="card-header bg-secondary text-dark text-center">@ViewBag.title1</h3>
+                <div class="card-body bg-secondary">
+                    <form asp-controller="Pantry" asp-action="RemoveFromPantry" method="post">
+                        <table class="table text-dark">
+                            <tr>
+                                <th>Remove</th>
+                                <th>Name</th>
+                                <th>Location</th>
+                            </tr>
+                            @foreach (var grocItem in Model.PantryItems)
+                            {
+                                <tr>
+                                    <td><input type="checkbox" name="pantryIds" id="@grocItem.ID" value="@grocItem.ID" /></td>
+                                    <td>@grocItem.Name</td>
+                                    <td>LOCATION</td>
+                                </tr>
+                            }
+                        </table>
+                        <div class="row">
+                            <div class="card-text col-12 text-center">
+                                <input class="btn btn-primary text-light" type="submit" value="Remove Selected Pantry Item(s)" />
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="card">
+                <h3 class="card-header bg-primary text-light text-center">@ViewBag.title2</h3>
+                <div class="card-body bg-primary">
+                    <form asp-controller="Pantry" asp-action="AddToPantry" method="post">
+                        <div class="row form-group form-inline">
+                            <label asp-for="Name" class="col-4 col-form-label text-light">Pantry Item: </label>
+                            <input class="form-control" asp-for="Name" />
+                            <span asp-validation-for="Name"></span>
+                        </div>
+                        <div class="row">
+                            <div class="card-text col-12 text-center">
+                                <input class="btn btn-secondary text-dark" type="submit" value="Add Pantry Item" />
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -89,5 +89,4 @@
 /Users/marybellavia/code/codecamp/FOODOKU/Foodoku/Foodoku/obj/Debug/netcoreapp3.1/Foodoku.csproj.CopyComplete
 /Users/marybellavia/code/codecamp/FOODOKU/Foodoku/Foodoku/obj/Debug/netcoreapp3.1/Foodoku.dll
 /Users/marybellavia/code/codecamp/FOODOKU/Foodoku/Foodoku/obj/Debug/netcoreapp3.1/Foodoku.pdb
-/Users/marybellavia/code/codecamp/FOODOKU/Foodoku/Foodoku/obj/Debug/netcoreapp3.1/Razor/Views/Pantry/Add.cshtml.g.cs
 /Users/marybellavia/code/codecamp/FOODOKU/Foodoku/Foodoku/obj/Debug/netcoreapp3.1/Razor/Views/Pantry/Index.cshtml.g.cs
