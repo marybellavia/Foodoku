@@ -25,5 +25,6 @@
 
   <ItemGroup>
     <Folder Include="ViewModels\" />
+    <Folder Include="Views\Pantry\" />
   </ItemGroup>
 </Project>
