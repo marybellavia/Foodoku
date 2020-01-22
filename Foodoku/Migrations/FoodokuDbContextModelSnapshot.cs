@@ -34,6 +34,26 @@ namespace Foodoku.Migrations
 
                     b.ToTable("GroceryItems");
                 });
+
+            modelBuilder.Entity("Foodoku.Models.User", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Password")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Username")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Users");
+                });
 #pragma warning restore 612, 618
         }
     }

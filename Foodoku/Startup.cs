@@ -12,6 +12,8 @@ using Foodoku.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Foodoku
 {
@@ -27,15 +29,27 @@ namespace Foodoku
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // my database
             services.AddEntityFrameworkSqlite().AddDbContext<FoodokuDbContext>();
 
+            // identity stuff
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlite(
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+
+            // for session
+            services.AddSession(options => {
+                options.IdleTimeout = TimeSpan.FromMinutes(30);
+                options.Cookie.HttpOnly = true;
+
+            });
+
+
             services.AddControllersWithViews();
-           services.AddRazorPages();
+            services.AddRazorPages();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -59,14 +73,17 @@ namespace Foodoku
 
             app.UseAuthentication();
             app.UseAuthorization();
+            // session
+            app.UseSession();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Pantry}/{action=Index}/{id?}");
+                    pattern: "{controller=UserSignupLogin}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
             });
+ 
         }
     }
 }

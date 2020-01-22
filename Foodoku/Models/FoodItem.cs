@@ -16,6 +16,9 @@ namespace Foodoku.Models
         public bool IsInPantry { get; set; }
         public string GroceryNote { get; set; }
 
+        public GroceryItemLocation Location { get; set; }
+        public int LocationID { get; set; }
+
         public GroceryItem()
         {
         }

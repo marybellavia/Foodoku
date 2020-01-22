@@ -8,8 +8,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Foodoku.Migrations
 {
     [DbContext(typeof(FoodokuDbContext))]
-    [Migration("20200122035152_Foodoku")]
-    partial class Foodoku
+    [Migration("20200122213849_SecondCreate")]
+    partial class SecondCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -35,6 +35,26 @@ namespace Foodoku.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("GroceryItems");
+                });
+
+            modelBuilder.Entity("Foodoku.Models.User", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Password")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Username")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Users");
                 });
 #pragma warning restore 612, 618
         }
