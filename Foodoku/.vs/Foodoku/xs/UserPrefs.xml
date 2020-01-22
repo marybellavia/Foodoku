@@ -2,8 +2,8 @@
   <MonoDevelop.Ide.ItemProperties.Foodoku PreferredExecutionTarget="/Applications/Google Chrome.app" />
   <MonoDevelop.Ide.Workbench>
     <Files>
-      <File FileName="Views/Shared/_Layout.cshtml" Line="7" Column="70" />
-      <File FileName="Views/Pantry/Index.cshtml" />
+      <File FileName="Views/Pantry/Add.cshtml" Line="14" Column="8" />
+      <File FileName="Views/Pantry/Index.cshtml" Line="22" Column="88" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -23,10 +23,10 @@
               <Node name="ViewModels" expanded="True" />
               <Node name="Views" expanded="True">
                 <Node name="Home" expanded="True" />
-                <Node name="Pantry" expanded="True" />
-                <Node name="Shared" expanded="True">
-                  <Node name="_Layout.cshtml" selected="True" />
+                <Node name="Pantry" expanded="True">
+                  <Node name="Add.cshtml" selected="True" />
                 </Node>
+                <Node name="Shared" expanded="True" />
               </Node>
               <Node name="wwwroot" expanded="True">
                 <Node name="css" expanded="True" />
@@ -34,10 +34,7 @@
                 <Node name="lib" expanded="True">
                   <Node name="bootstrap" expanded="True">
                     <Node name="dist" expanded="True">
-                      <Node name="css" expanded="True">
-                        <Node name="bootstrap-def.css" expanded="True" />
-                        <Node name="bootstrap-grid.css" expanded="True" />
-                      </Node>
+                      <Node name="css" expanded="True" />
                     </Node>
                   </Node>
                 </Node>
