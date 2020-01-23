@@ -52,8 +52,6 @@ namespace Foodoku.Controllers
         {
             if (ModelState.IsValid)
             {
-
-
                 return View(loginUserViewModel);
             }
 

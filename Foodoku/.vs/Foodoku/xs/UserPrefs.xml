@@ -2,12 +2,12 @@
   <MonoDevelop.Ide.ItemProperties.Foodoku PreferredExecutionTarget="/Applications/Google Chrome.app" />
   <MonoDevelop.Ide.Workbench>
     <Files>
-      <File FileName="Controllers/UserSignupLoginController.cs" Line="55" Column="1" />
-      <File FileName="Views/UserSignupLogin/Index.cshtml" Line="2" Column="1" />
-      <File FileName="Data/FoodokuDbContext.cs" Line="11" Column="66" />
-      <File FileName="Models/FoodItem.cs" Line="23" Column="10" />
-      <File FileName="Models/GroceryItemLocation.cs" Line="17" Column="2" />
-      <File FileName="Models/User.cs" Line="1" Column="1" />
+      <File FileName="Controllers/UserSignupLoginController.cs" Line="54" Column="14" />
+      <File FileName="ViewModels/AddPantryItemViewModel.cs" Line="37" Column="10" />
+      <File FileName="Controllers/PantryController.cs" Line="29" Column="10" />
+      <File FileName="Models/FoodItem.cs" Line="1" Column="1" />
+      <File FileName="Views/Pantry/Index.cshtml" Line="25" Column="29" />
+      <File FileName="Data/FoodokuDbContext.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -16,14 +16,14 @@
             <Node name="Foodoku" expanded="True">
               <Node name="Dependencies" expanded="True" />
               <Node name="Controllers" expanded="True" />
-              <Node name="Data" expanded="True">
-                <Node name="FoodokuDbContext.cs" selected="True" />
-              </Node>
+              <Node name="Data" expanded="True" />
               <Node name="Models" expanded="True" />
               <Node name="Properties" expanded="True" />
               <Node name="ViewModels" expanded="True" />
               <Node name="Views" expanded="True">
-                <Node name="Pantry" expanded="True" />
+                <Node name="Pantry" expanded="True">
+                  <Node name="Index.cshtml" selected="True" />
+                </Node>
                 <Node name="UserSignupLogin" expanded="True" />
               </Node>
             </Node>

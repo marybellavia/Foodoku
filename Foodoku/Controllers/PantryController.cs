@@ -31,7 +31,7 @@ namespace Foodoku.Controllers
                 ViewBag.title1 = "Current Pantry";
                 ViewBag.title2 = "Add Item to Pantry";
 
-                AddPantryItemViewModel viewModel = new AddPantryItemViewModel();
+                AddPantryItemViewModel viewModel = new AddPantryItemViewModel(context.Locations.ToList());
                 viewModel.PantryItems = context.GroceryItems.ToList();
 
                 return View(viewModel);
@@ -43,11 +43,16 @@ namespace Foodoku.Controllers
             // checking if model is valid
             if (ModelState.IsValid)
             {
+                GroceryItemLocation newLocation =
+                context.Locations.Single
+                (c => c.ID == viewModel.GroceryItemLocationID);
+
                 //creating new pantry item for list
                 GroceryItem newPantryItem = new GroceryItem()
                 {
                     Name = viewModel.Name,
                     IsInPantry = true,
+                    LocationID = newLocation.ID,
                 };
 
                 // adding and updating database with object
