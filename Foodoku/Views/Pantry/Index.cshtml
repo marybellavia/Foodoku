@@ -16,6 +16,7 @@
                             <tr>
                                 <th>Remove</th>
                                 <th>Name</th>
+                                <th>Note</th>
                                 <th>Location</th>
                             </tr>
                             @foreach (var grocItem in Model.PantryItems)
@@ -23,6 +24,7 @@
                                 <tr>
                                     <td><input type="checkbox" name="pantryIds" id="@grocItem.ID" value="@grocItem.ID" /></td>
                                     <td>@grocItem.Name</td>
+                                    <td>@grocItem.GroceryNote</td>
                                     <td>@grocItem.Location.Name</td>
                                 </tr>
                             }
@@ -45,6 +47,9 @@
                             <label asp-for="Name" class="col-4 col-form-label text-light">Pantry Item</label>
                             <input class="form-control" asp-for="Name" />
                             <span asp-validation-for="Name"></span>
+                            <label asp-for="GroceryNote" class="col-4 col-form-label text-light">Note</label>
+                            <input class="form-control" asp-for="GroceryNote" />
+                            <span asp-validation-for="GroceryNote"></span>
                             <label asp-for="GroceryItemLocationID" class="col-4 col-form-label text-light">Location</label>
                             <select asp-for="GroceryItemLocationID" asp-items="Model.Locations"></select>
                         </div>

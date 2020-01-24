@@ -51,6 +51,7 @@ namespace Foodoku.Controllers
                 GroceryItem newPantryItem = new GroceryItem()
                 {
                     Name = viewModel.Name,
+                    GroceryNote = viewModel.GroceryNote,
                     IsInPantry = true,
                     LocationID = newLocation.ID,
                 };

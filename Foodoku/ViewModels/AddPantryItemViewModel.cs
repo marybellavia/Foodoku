@@ -14,8 +14,10 @@ namespace Foodoku.ViewModels
         [Required(ErrorMessage = "Name of item required")]
         public string Name { get; set; }
 
-        public bool IsInPantry { get; set; }
+        public string GroceryNote { get; set; }
 
+        public bool IsInPantry { get; set; }
+        
         public int GroceryItemLocationID { get; set; }
 
         public List<SelectListItem> Locations { get; set; }
