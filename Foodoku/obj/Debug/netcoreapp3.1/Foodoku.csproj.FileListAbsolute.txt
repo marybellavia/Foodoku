@@ -94,3 +94,4 @@
 /Users/marybellavia/code/codecamp/FOODOKU/Foodoku/Foodoku/bin/Debug/netcoreapp3.1/runtimes/win/lib/netcoreapp2.1/System.Security.Cryptography.Pkcs.dll
 /Users/marybellavia/code/codecamp/FOODOKU/Foodoku/Foodoku/obj/Debug/netcoreapp3.1/Razor/Views/UserSignupLogin/Index.cshtml.g.cs
 /Users/marybellavia/code/codecamp/FOODOKU/Foodoku/Foodoku/obj/Debug/netcoreapp3.1/Razor/Views/UserSignupLogin/Success.cshtml.g.cs
+/Users/marybellavia/code/codecamp/FOODOKU/Foodoku/Foodoku/obj/Debug/netcoreapp3.1/Razor/Views/Pantry/EditPantryItem.cshtml.g.cs

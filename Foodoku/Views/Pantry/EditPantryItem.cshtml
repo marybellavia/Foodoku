@@ -1,0 +1,66 @@
+﻿@model Foodoku.ViewModels.EditPantryItemViewModel
+
+@{ ViewBag.title0 = "My Pantry";
+   ViewBag.title1 = "Current Pantry";
+   ViewBag.title2 = "Edit Pantry Item"; }
+
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h1 class="text-center">@ViewBag.title0</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <div class="card">
+                    <h3 class="card-header bg-secondary text-dark text-center">@ViewBag.title1</h3>
+                    <div class="card-body bg-secondary">
+                        <table class="table text-dark">
+                            <tr>
+                                <th>Name</th>
+                                <th>Note</th>
+                                <th>Current Location</th>
+                            </tr>
+                            @foreach (var grocItem in Model.PantryItems)
+                            {
+                                <tr>
+                                    <td>@grocItem.Name</td>
+                                    <td>@grocItem.GroceryNote</td>
+                                    <td>@grocItem.Location.Name</td>
+                                </tr>
+                            }
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="card">
+                    <h3 class="card-header bg-danger text-light text-center">@ViewBag.title2</h3>
+                    <div class="card-body bg-danger">
+                        <form asp-controller="Pantry" asp-action="EditPantryItem" method="post">
+                            <div class="row form-group form-inline">
+                                <label asp-for="Name" class="col-4 col-form-label text-light">Pantry Item</label>
+                                <input class="form-control" asp-for="Name" />
+                            </div>
+                            <div class="row form-group form-inline">
+                                <span asp-validation-for="Name" class="text-warning col-12 text-center"></span>
+                            </div>
+                            <div class="row form-group form-inline">
+                                <label asp-for="GroceryNote" class="col-4 col-form-label text-light">Note</label>
+                                <input class="form-control" asp-for="GroceryNote" />
+                                <span asp-validation-for="GroceryNote"></span>
+                                <label asp-for="GroceryItemLocationID" class="col-4 col-form-label text-light">Location</label>
+                                <select asp-for="GroceryItemLocationID" asp-items="Model.Locations"></select>
+                            </div>
+                            <div class="row">
+                                <div class="card-text col-12 text-center">
+                                    <input class="btn btn-secondary text-dark" type="submit" value="Edit Pantry Item" />
+                                    <input type="hidden" value="@Model.PantryId" name="pantryId" />
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

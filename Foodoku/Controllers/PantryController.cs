@@ -27,10 +27,6 @@ namespace Foodoku.Controllers
         // GET: /<controller>/
         public IActionResult Index()
         {
-                ViewBag.title0 = "My Pantry";
-                ViewBag.title1 = "Current Pantry";
-                ViewBag.title2 = "Add Item to Pantry";
-
                 AddPantryItemViewModel viewModel = new AddPantryItemViewModel(context.Locations.ToList());
                 viewModel.PantryItems = context.GroceryItems.ToList();
 
@@ -63,11 +59,19 @@ namespace Foodoku.Controllers
                 return Redirect("/Pantry");
             }
 
-            return View("Index",viewModel);
+            //AddPantryItemViewModel redoPantryItem = new AddPantryItemViewModel(context.Locations.ToList())
+            //{
+            //    Name = viewModel.Name,
+            //    GroceryNote = viewModel.GroceryNote
+            //};
+            AddPantryItemViewModel newAddViewModel = new AddPantryItemViewModel(context.Locations.ToList());
+            newAddViewModel.PantryItems = context.GroceryItems.ToList();
+
+            return View("Index", newAddViewModel);
         }
 
         [HttpPost]
-        public IActionResult RemoveFromPantry(int[] pantryIds)
+        public IActionResult RemoveFromPantry(AddPantryItemViewModel VM, int[] pantryIds)
         {
             // used checkboxes, looping through list of cheeseIds
             foreach (int pantryId in pantryIds)
@@ -76,6 +80,8 @@ namespace Foodoku.Controllers
                 GroceryItem theItem = context.GroceryItems.Single(c => c.ID == pantryId);
                 // removing each cheese in the list from the database
                 context.GroceryItems.Remove(theItem);
+                // edit location
+                theItem.LocationID = VM.GroceryItemLocationID;
             }
 
             // saving changes to the database
@@ -84,6 +90,37 @@ namespace Foodoku.Controllers
             // redirecting back to the index to show cheese list without cheeses
             return Redirect("/Pantry");
 
+        }
+
+        public IActionResult EditPantryItem(int pantryId)
+        {
+            GroceryItem grocItem = context.GroceryItems.Single(c => c.ID == pantryId);
+
+            EditPantryItemViewModel vm = new EditPantryItemViewModel(grocItem, context.Locations.ToList());
+            vm.PantryItems = context.GroceryItems.ToList();
+
+            return View(vm);
+        }
+
+        [HttpPost]
+        public IActionResult EditPantryItem(EditPantryItemViewModel vm)
+        {
+            GroceryItem editedPantryItem = context.GroceryItems.Single(c => c.ID == vm.PantryId);
+
+            if (ModelState.IsValid)
+            {
+                editedPantryItem.Name = vm.Name;
+                editedPantryItem.GroceryNote = vm.GroceryNote;
+                editedPantryItem.LocationID = vm.GroceryItemLocationID;
+
+                context.SaveChanges();
+                return Redirect("/Pantry");
+            }
+
+            EditPantryItemViewModel newEditViewModel = new EditPantryItemViewModel(editedPantryItem, context.Locations.ToList());
+            newEditViewModel.PantryItems = context.GroceryItems.ToList();
+
+            return View(newEditViewModel);
         }
     }
 }

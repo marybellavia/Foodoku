@@ -1,5 +1,9 @@
 ﻿@model Foodoku.ViewModels.AddPantryItemViewModel
 
+@{ ViewBag.title0 = "My Pantry";
+   ViewBag.title1 = "Current Pantry";
+   ViewBag.title2 = "Add Item to Pantry"; }
+
 <div class="container">
     <div class="row">
         <div class="col-12">
@@ -17,7 +21,8 @@
                                 <th>Remove</th>
                                 <th>Name</th>
                                 <th>Note</th>
-                                <th>Location</th>
+                                <th>Current Location</th>
+                                <th>Edit Option</th>
                             </tr>
                             @foreach (var grocItem in Model.PantryItems)
                             {
@@ -26,6 +31,7 @@
                                     <td>@grocItem.Name</td>
                                     <td>@grocItem.GroceryNote</td>
                                     <td>@grocItem.Location.Name</td>
+                                    <td><a asp-controller="Pantry" asp-action="EditPantryItem" asp-route-pantryId="@grocItem.ID">Edit</a></td>
                                 </tr>
                             }
                         </table>
@@ -46,7 +52,11 @@
                         <div class="row form-group form-inline">
                             <label asp-for="Name" class="col-4 col-form-label text-light">Pantry Item</label>
                             <input class="form-control" asp-for="Name" />
-                            <span asp-validation-for="Name"></span>
+                        </div>
+                        <div class="row form-group form-inline">
+                            <span asp-validation-for="Name" class="text-warning col-12 text-center"></span>
+                        </div>
+                        <div class="row form-group form-inline">
                             <label asp-for="GroceryNote" class="col-4 col-form-label text-light">Note</label>
                             <input class="form-control" asp-for="GroceryNote" />
                             <span asp-validation-for="GroceryNote"></span>
