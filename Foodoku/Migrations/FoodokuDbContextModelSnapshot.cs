@@ -32,9 +32,14 @@ namespace Foodoku.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("TEXT");
 
+                    b.Property<int?>("UnitOfMeasurementID")
+                        .HasColumnType("INTEGER");
+
                     b.HasKey("ID");
 
                     b.HasIndex("GroceryItemLocationID");
+
+                    b.HasIndex("UnitOfMeasurementID");
 
                     b.ToTable("FoodItem");
 
@@ -53,6 +58,63 @@ namespace Foodoku.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("Locations");
+                });
+
+            modelBuilder.Entity("Foodoku.Models.Recipe", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int?>("IngredientID")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Instructions")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("Yield")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("IngredientID");
+
+                    b.ToTable("Recipes");
+                });
+
+            modelBuilder.Entity("Foodoku.Models.RecipeIngredient", b =>
+                {
+                    b.Property<int>("RecipeID")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("IngredientID")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("RecipeID", "IngredientID");
+
+                    b.HasIndex("IngredientID");
+
+                    b.ToTable("RecipeIngredients");
+                });
+
+            modelBuilder.Entity("Foodoku.Models.UnitOfMeasurement", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("UnitOfMeasurements");
                 });
 
             modelBuilder.Entity("Foodoku.Models.User", b =>
@@ -93,11 +155,52 @@ namespace Foodoku.Migrations
                     b.HasDiscriminator().HasValue("GroceryItem");
                 });
 
+            modelBuilder.Entity("Foodoku.Models.Ingredient", b =>
+                {
+                    b.HasBaseType("Foodoku.Models.FoodItem");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("UnitOfMeasurementID1")
+                        .HasColumnType("INTEGER");
+
+                    b.HasIndex("UnitOfMeasurementID1");
+
+                    b.HasDiscriminator().HasValue("Ingredient");
+                });
+
             modelBuilder.Entity("Foodoku.Models.FoodItem", b =>
                 {
                     b.HasOne("Foodoku.Models.GroceryItemLocation", null)
                         .WithMany("FoodItems")
                         .HasForeignKey("GroceryItemLocationID");
+
+                    b.HasOne("Foodoku.Models.UnitOfMeasurement", null)
+                        .WithMany("FoodItems")
+                        .HasForeignKey("UnitOfMeasurementID");
+                });
+
+            modelBuilder.Entity("Foodoku.Models.Recipe", b =>
+                {
+                    b.HasOne("Foodoku.Models.Ingredient", null)
+                        .WithMany("Recipes")
+                        .HasForeignKey("IngredientID");
+                });
+
+            modelBuilder.Entity("Foodoku.Models.RecipeIngredient", b =>
+                {
+                    b.HasOne("Foodoku.Models.Ingredient", "Ingredient")
+                        .WithMany()
+                        .HasForeignKey("IngredientID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Foodoku.Models.Recipe", "Recipe")
+                        .WithMany("Ingredients")
+                        .HasForeignKey("RecipeID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Foodoku.Models.GroceryItem", b =>
@@ -107,6 +210,13 @@ namespace Foodoku.Migrations
                         .HasForeignKey("LocationID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Foodoku.Models.Ingredient", b =>
+                {
+                    b.HasOne("Foodoku.Models.UnitOfMeasurement", "UnitOfMeasurement")
+                        .WithMany()
+                        .HasForeignKey("UnitOfMeasurementID1");
                 });
 #pragma warning restore 612, 618
         }

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+
 namespace Foodoku.Models
 {
     public abstract class FoodItem
@@ -24,10 +26,17 @@ namespace Foodoku.Models
         }
     }
 
-    //public class RecipeIngredient : FoodItem
-    //{
-    //    public RecipeIngredient()
-    //    {
-    //    }
-    //}
+    public class Ingredient : FoodItem
+    {
+        public int Quantity { get; set; }
+
+        public UnitOfMeasurement UnitOfMeasurement { get; set; }
+        public int UnitOfMeasurementID { get; set; }
+
+        public IList<Recipe> Recipes { get; set; }
+
+        public Ingredient()
+        {
+        }
+    }
 }

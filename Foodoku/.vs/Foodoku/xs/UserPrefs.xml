@@ -2,44 +2,22 @@
   <MonoDevelop.Ide.ItemProperties.Foodoku PreferredExecutionTarget="/Applications/Google Chrome.app" />
   <MonoDevelop.Ide.Workbench>
     <Files>
-      <File FileName="Controllers/PantryController.cs" Line="55" Column="36" />
-      <File FileName="Controllers/GroceryController.cs" Line="24" Column="1" />
-      <File FileName="ViewModels/AddGroceryItemViewModel.cs" Line="15" Column="1" />
-      <File FileName="Views/Pantry/Index.cshtml" Line="37" Column="33" />
-      <File FileName="Models/FoodItem.cs" Line="1" Column="1" />
+      <File FileName="Models/RecipeIngredient.cs" Line="17" Column="2" />
+      <File FileName="Data/FoodokuDbContext.cs" Line="1" Column="1" />
+      <File FileName="Data/Migrations/ApplicationDbContextModelSnapshot.cs" Line="1" Column="1" />
+      <File FileName="Foodoku.db" />
+      <File FileName="Models/User.cs" Line="8" Column="20" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="Foodoku" expanded="True">
             <Node name="Foodoku" expanded="True">
-              <Node name="Dependencies" expanded="True" />
-              <Node name="Areas" expanded="True">
-                <Node name="Identity" expanded="True">
-                  <Node name="Pages" expanded="True" />
-                </Node>
+              <Node name="Data" expanded="True">
+                <Node name="Migrations" expanded="True" />
               </Node>
-              <Node name="Controllers" expanded="True">
-                <Node name="GroceryController.cs" selected="True" />
-              </Node>
-              <Node name="Data" expanded="True" />
-              <Node name="Migrations" expanded="True" />
-              <Node name="Models" expanded="True" />
-              <Node name="Properties" expanded="True" />
-              <Node name="ViewModels" expanded="True" />
-              <Node name="Views" expanded="True">
-                <Node name="Grocery" expanded="True" />
-                <Node name="Pantry" expanded="True" />
-                <Node name="UserSignupLogin" expanded="True" />
-              </Node>
-              <Node name="wwwroot" expanded="True">
-                <Node name="lib" expanded="True">
-                  <Node name="bootstrap" expanded="True">
-                    <Node name="dist" expanded="True">
-                      <Node name="css" expanded="True" />
-                    </Node>
-                  </Node>
-                </Node>
+              <Node name="Models" expanded="True">
+                <Node name="User.cs" selected="True" />
               </Node>
             </Node>
           </Node>
