@@ -9,7 +9,7 @@ namespace Foodoku.ViewModels
     public class AddGroceryItemViewModel
     {
         // list for viewing current pantry in view
-        public IList<GroceryItem> PantryItems { get; set; }
+        public IList<GroceryItem> PantryList { get; set; }
         // list for viewing current pantry in view
         public IList<GroceryItem> GroceryList { get; set; }
 

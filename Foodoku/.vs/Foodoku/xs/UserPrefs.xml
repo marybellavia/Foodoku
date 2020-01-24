@@ -2,13 +2,11 @@
   <MonoDevelop.Ide.ItemProperties.Foodoku PreferredExecutionTarget="/Applications/Google Chrome.app" />
   <MonoDevelop.Ide.Workbench>
     <Files>
-      <File FileName="Controllers/PantryController.cs" Line="67" Column="13" />
-      <File FileName="Controllers/GroceryController.cs" Line="58" Column="10" />
-      <File FileName="Views/Grocery/Index.cshtml" Line="23" Column="46" />
-      <File FileName="ViewModels/AddGroceryItemViewModel.cs" Line="1" Column="1" />
-      <File FileName="Views/Grocery/EditGroceryItem.cshtml" Line="27" Column="63" />
-      <File FileName="ViewModels/EditGroceryItemViewModel.cs" Line="1" Column="1" />
-      <File FileName="ViewModels/AddUserViewModel.cs" Line="1" Column="1" />
+      <File FileName="Controllers/PantryController.cs" Line="55" Column="36" />
+      <File FileName="Controllers/GroceryController.cs" Line="24" Column="1" />
+      <File FileName="ViewModels/AddGroceryItemViewModel.cs" Line="15" Column="1" />
+      <File FileName="Views/Pantry/Index.cshtml" Line="37" Column="33" />
+      <File FileName="Models/FoodItem.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">

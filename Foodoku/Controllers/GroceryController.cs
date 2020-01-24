@@ -6,6 +6,7 @@ using Foodoku.Data;
 using Foodoku.Models;
 using Foodoku.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -26,6 +27,7 @@ namespace Foodoku.Controllers
         {
             AddGroceryItemViewModel addGroceryItemViewModel = new AddGroceryItemViewModel();
             addGroceryItemViewModel.GroceryList = context.GroceryItems.Where(g => g.IsInPantry == false).ToList();
+            addGroceryItemViewModel.PantryList = context.GroceryItems.Include(p => p.Location).Where(p => p.IsInPantry == true).ToList();
 
             return View(addGroceryItemViewModel);
         }
