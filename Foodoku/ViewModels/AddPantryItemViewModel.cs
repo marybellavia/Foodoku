@@ -9,7 +9,7 @@ namespace Foodoku.ViewModels
     public class AddPantryItemViewModel
     {
         // list for viewing current pantry in view
-        public IList<GroceryItem> PantryItems { get; set; }
+        public IList<GroceryItem> PantryList { get; set; }
 
         // so we can set the name
         [Required(ErrorMessage = "Name of item required")]

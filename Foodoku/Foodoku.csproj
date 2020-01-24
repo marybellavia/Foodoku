@@ -27,6 +27,7 @@
   <ItemGroup>
     <Folder Include="ViewModels\" />
     <Folder Include="Views\Pantry\" />
+    <Folder Include="Views\Grocery\" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="wwwroot\lib\bootstrap\dist\css\bootstrap.css" />

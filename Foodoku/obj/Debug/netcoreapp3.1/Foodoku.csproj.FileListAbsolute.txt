@@ -95,3 +95,5 @@
 /Users/marybellavia/code/codecamp/FOODOKU/Foodoku/Foodoku/obj/Debug/netcoreapp3.1/Razor/Views/UserSignupLogin/Index.cshtml.g.cs
 /Users/marybellavia/code/codecamp/FOODOKU/Foodoku/Foodoku/obj/Debug/netcoreapp3.1/Razor/Views/UserSignupLogin/Success.cshtml.g.cs
 /Users/marybellavia/code/codecamp/FOODOKU/Foodoku/Foodoku/obj/Debug/netcoreapp3.1/Razor/Views/Pantry/EditPantryItem.cshtml.g.cs
+/Users/marybellavia/code/codecamp/FOODOKU/Foodoku/Foodoku/obj/Debug/netcoreapp3.1/Razor/Views/Grocery/Index.cshtml.g.cs
+/Users/marybellavia/code/codecamp/FOODOKU/Foodoku/Foodoku/obj/Debug/netcoreapp3.1/Razor/Views/Grocery/EditGroceryItem.cshtml.g.cs

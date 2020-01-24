@@ -2,12 +2,13 @@
   <MonoDevelop.Ide.ItemProperties.Foodoku PreferredExecutionTarget="/Applications/Google Chrome.app" />
   <MonoDevelop.Ide.Workbench>
     <Files>
-      <File FileName="Controllers/UserSignupLoginController.cs" Line="54" Column="14" />
-      <File FileName="ViewModels/AddPantryItemViewModel.cs" Line="19" Column="26" />
-      <File FileName="Controllers/PantryController.cs" Line="68" Column="20" />
-      <File FileName="ViewModels/EditPantryItemViewModel.cs" Line="9" Column="42" />
-      <File FileName="Views/Pantry/Index.cshtml" Line="56" Column="1" />
-      <File FileName="Views/Pantry/EditPantryItem.cshtml" Line="48" Column="69" />
+      <File FileName="Controllers/PantryController.cs" Line="67" Column="13" />
+      <File FileName="Controllers/GroceryController.cs" Line="58" Column="10" />
+      <File FileName="Views/Grocery/Index.cshtml" Line="23" Column="46" />
+      <File FileName="ViewModels/AddGroceryItemViewModel.cs" Line="1" Column="1" />
+      <File FileName="Views/Grocery/EditGroceryItem.cshtml" Line="27" Column="63" />
+      <File FileName="ViewModels/EditGroceryItemViewModel.cs" Line="1" Column="1" />
+      <File FileName="ViewModels/AddUserViewModel.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -15,8 +16,13 @@
           <Node name="Foodoku" expanded="True">
             <Node name="Foodoku" expanded="True">
               <Node name="Dependencies" expanded="True" />
+              <Node name="Areas" expanded="True">
+                <Node name="Identity" expanded="True">
+                  <Node name="Pages" expanded="True" />
+                </Node>
+              </Node>
               <Node name="Controllers" expanded="True">
-                <Node name="PantryController.cs" selected="True" />
+                <Node name="GroceryController.cs" selected="True" />
               </Node>
               <Node name="Data" expanded="True" />
               <Node name="Migrations" expanded="True" />
@@ -24,8 +30,18 @@
               <Node name="Properties" expanded="True" />
               <Node name="ViewModels" expanded="True" />
               <Node name="Views" expanded="True">
+                <Node name="Grocery" expanded="True" />
                 <Node name="Pantry" expanded="True" />
                 <Node name="UserSignupLogin" expanded="True" />
+              </Node>
+              <Node name="wwwroot" expanded="True">
+                <Node name="lib" expanded="True">
+                  <Node name="bootstrap" expanded="True">
+                    <Node name="dist" expanded="True">
+                      <Node name="css" expanded="True" />
+                    </Node>
+                  </Node>
+                </Node>
               </Node>
             </Node>
           </Node>

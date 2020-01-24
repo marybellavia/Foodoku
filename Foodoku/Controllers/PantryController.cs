@@ -28,7 +28,7 @@ namespace Foodoku.Controllers
         public IActionResult Index()
         {
                 AddPantryItemViewModel viewModel = new AddPantryItemViewModel(context.Locations.ToList());
-                viewModel.PantryItems = context.GroceryItems.ToList();
+                viewModel.PantryList = context.GroceryItems.Where(g => g.IsInPantry == true).ToList();
 
                 return View(viewModel);
         }
@@ -65,7 +65,7 @@ namespace Foodoku.Controllers
             //    GroceryNote = viewModel.GroceryNote
             //};
             AddPantryItemViewModel newAddViewModel = new AddPantryItemViewModel(context.Locations.ToList());
-            newAddViewModel.PantryItems = context.GroceryItems.ToList();
+            newAddViewModel.PantryList = context.GroceryItems.Where(g => g.IsInPantry == true).ToList();
 
             return View("Index", newAddViewModel);
         }
@@ -80,16 +80,13 @@ namespace Foodoku.Controllers
                 GroceryItem theItem = context.GroceryItems.Single(c => c.ID == pantryId);
                 // removing each cheese in the list from the database
                 context.GroceryItems.Remove(theItem);
-                // edit location
-                theItem.LocationID = VM.GroceryItemLocationID;
             }
 
             // saving changes to the database
             context.SaveChanges();
 
-            // redirecting back to the index to show cheese list without cheeses
+            // redirecting back to the index to show pantry
             return Redirect("/Pantry");
-
         }
 
         public IActionResult EditPantryItem(int pantryId)
@@ -97,7 +94,7 @@ namespace Foodoku.Controllers
             GroceryItem grocItem = context.GroceryItems.Single(c => c.ID == pantryId);
 
             EditPantryItemViewModel vm = new EditPantryItemViewModel(grocItem, context.Locations.ToList());
-            vm.PantryItems = context.GroceryItems.ToList();
+            vm.PantryList = context.GroceryItems.Where(g => g.IsInPantry == true).ToList();
 
             return View(vm);
         }
@@ -118,7 +115,7 @@ namespace Foodoku.Controllers
             }
 
             EditPantryItemViewModel newEditViewModel = new EditPantryItemViewModel(editedPantryItem, context.Locations.ToList());
-            newEditViewModel.PantryItems = context.GroceryItems.ToList();
+            newEditViewModel.PantryList = context.GroceryItems.Where(g => g.IsInPantry == true).ToList();
 
             return View(newEditViewModel);
         }
