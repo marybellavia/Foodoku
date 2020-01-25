@@ -1,11 +1,27 @@
-﻿@model Foodoku.ViewModels.ViewAllRecipeViewModel
+﻿@model Foodoku.Models.Recipe
 @{ ViewBag.title = "All Recipes"; }
 
 <h1>@ViewBag.title</h1>
 
-<ul>
-    @foreach (var recipe in Model.Recipes)
-    {
-        <li>@recipe.Title: @recipe.Description</li>
-    }
-</ul>
+<table>
+    <tr>
+        <td>Recipe Title</td>
+        <td>@Model.Title</td>
+    </tr>
+    <tr>
+        <td>Summary</td>
+        <td>@Model.Summary</td>
+    </tr>
+    <tr>
+        <td>Yield</td>
+        <td>@Model.Yield</td>
+    </tr>
+    <tr>
+        <td>Ingredients</td>
+        <td>@Model.Ingredient</td>
+    </tr>
+    <tr>
+        <td>Instruction</td>
+        <td>@Model.Instruction</td>
+    </tr>
+</table>
