@@ -1,23 +1,18 @@
 ﻿<Properties StartupConfiguration="{92F151BE-9035-43CE-BB79-3EA3D6DA6F55}|Default">
   <MonoDevelop.Ide.ItemProperties.Foodoku PreferredExecutionTarget="/Applications/Google Chrome.app" />
-  <MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench ActiveDocument="Models/FoodItem.cs">
     <Files>
-      <File FileName="Models/RecipeIngredient.cs" Line="17" Column="2" />
       <File FileName="Data/FoodokuDbContext.cs" Line="1" Column="1" />
-      <File FileName="Data/Migrations/ApplicationDbContextModelSnapshot.cs" Line="1" Column="1" />
-      <File FileName="Foodoku.db" />
-      <File FileName="Models/User.cs" Line="8" Column="20" />
+      <File FileName="Models/Recipe.cs" Line="1" Column="1" />
+      <File FileName="Models/FoodItem.cs" Line="26" Column="10" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="Foodoku" expanded="True">
             <Node name="Foodoku" expanded="True">
-              <Node name="Data" expanded="True">
-                <Node name="Migrations" expanded="True" />
-              </Node>
               <Node name="Models" expanded="True">
-                <Node name="User.cs" selected="True" />
+                <Node name="FoodItem.cs" selected="True" />
               </Node>
             </Node>
           </Node>

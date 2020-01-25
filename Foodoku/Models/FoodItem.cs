@@ -28,12 +28,12 @@ namespace Foodoku.Models
 
     public class Ingredient : FoodItem
     {
-        public int Quantity { get; set; }
+        public string Quantity { get; set; }
 
         public UnitOfMeasurement UnitOfMeasurement { get; set; }
         public int UnitOfMeasurementID { get; set; }
 
-        public IList<Recipe> Recipes { get; set; }
+        //public IList<Recipe> Recipes { get; set; }
 
         public Ingredient()
         {

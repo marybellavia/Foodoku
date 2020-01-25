@@ -8,11 +8,12 @@ namespace Foodoku.Models
         public string Title { get; set; }
         public int ID { get; set; }
 
-        public int Yield { get; set; }
+        public double Yield { get; set; }
         public string Description { get; set; }
         public string Instructions { get; set; }
+        public string Ingredients { get; set; }
 
-        public IList<RecipeIngredient> Ingredients { get; set; }
+        //public IList<RecipeIngredient> Ingredients { get; set; }
 
         public Recipe()
         {

@@ -29,6 +29,7 @@
     <Folder Include="Views\Pantry\" />
     <Folder Include="Views\Grocery\" />
     <Folder Include="Views\Recipe\" />
+    <Folder Include="Views\MealPlanner\" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="wwwroot\lib\bootstrap\dist\css\bootstrap.css" />

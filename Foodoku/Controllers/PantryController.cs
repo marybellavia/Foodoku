@@ -7,6 +7,7 @@ using Foodoku.Models;
 using Foodoku.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -16,7 +17,7 @@ namespace Foodoku.Controllers
 {
     public class PantryController : Controller
     {
-        // this private field allows controller to access the database
+        // this private field allows controller to access the database tables
         private readonly FoodokuDbContext context;
         // actually setting value to this private field
         public PantryController(FoodokuDbContext dbContext)
@@ -27,10 +28,23 @@ namespace Foodoku.Controllers
         // GET: /<controller>/
         public IActionResult Index()
         {
-                AddPantryItemViewModel viewModel = new AddPantryItemViewModel(context.Locations.ToList());
-                viewModel.PantryList = context.GroceryItems.Where(g => g.IsInPantry == true).ToList();
+            // seeding the database if it is empty
+            context.Database.EnsureCreated();
+            var testLocation = context.Locations.FirstOrDefault(b => b.Name == "Dry Storage");
+            if (testLocation == null)
+            {
+                context.Locations.Add(new GroceryItemLocation { Name = "Dry Storage" });
+                context.Locations.Add(new GroceryItemLocation { Name = "Fridge" });
+                context.Locations.Add(new GroceryItemLocation { Name = "Freezer" });
+                context.Locations.Add(new GroceryItemLocation { Name = "Deep Freeze" });
+            }
+            context.SaveChanges();
 
-                return View(viewModel);
+            // creating viewmodel for forms and pantry list
+            AddPantryItemViewModel viewModel = new AddPantryItemViewModel(context.Locations.ToList());
+            viewModel.PantryList = context.GroceryItems.Where(g => g.IsInPantry == true).ToList();
+
+            return View(viewModel);
         }
 
         [HttpPost]
@@ -59,11 +73,6 @@ namespace Foodoku.Controllers
                 return Redirect("/Pantry");
             }
 
-            //AddPantryItemViewModel redoPantryItem = new AddPantryItemViewModel(context.Locations.ToList())
-            //{
-            //    Name = viewModel.Name,
-            //    GroceryNote = viewModel.GroceryNote
-            //};
             AddPantryItemViewModel newAddViewModel = new AddPantryItemViewModel(context.Locations.ToList());
             newAddViewModel.PantryList = context.GroceryItems.Where(g => g.IsInPantry == true).ToList();
 
