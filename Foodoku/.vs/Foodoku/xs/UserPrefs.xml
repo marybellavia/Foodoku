@@ -1,12 +1,11 @@
 ﻿<Properties StartupConfiguration="{92F151BE-9035-43CE-BB79-3EA3D6DA6F55}|Default">
   <MonoDevelop.Ide.ItemProperties.Foodoku PreferredExecutionTarget="/Applications/Google Chrome.app" />
-  <MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench ActiveDocument="Data/RecipeFieldData.cs">
     <Files>
-      <File FileName="Views/Recipe/Index.cshtml" Line="18" Column="10" />
-      <File FileName="Controllers/RecipeController.cs" Line="40" Column="2" />
-      <File FileName="ViewModels/ViewAllRecipeViewModel.cs" Line="1" Column="1" />
       <File FileName="Data/recipe.csv" Line="1" Column="1" />
-      <File FileName="Data/RecipeDataImporter.cs" Line="54" Column="82" />
+      <File FileName="Data/RecipeData.cs" Line="10" Column="12" />
+      <File FileName="Data/RecipeFieldData.cs" Line="1" Column="1" />
+      <File FileName="Views/Recipe/Index.cshtml" Line="1" Column="29" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -14,12 +13,12 @@
           <Node name="Foodoku" expanded="True">
             <Node name="Foodoku" expanded="True">
               <Node name="Controllers" expanded="True" />
-              <Node name="Data" expanded="True" />
+              <Node name="Data" expanded="True">
+                <Node name="RecipeFieldData.cs" selected="True" />
+              </Node>
               <Node name="ViewModels" expanded="True" />
               <Node name="Views" expanded="True">
-                <Node name="Recipe" expanded="True">
-                  <Node name="Index.cshtml" selected="True" />
-                </Node>
+                <Node name="Recipe" expanded="True" />
               </Node>
             </Node>
           </Node>
