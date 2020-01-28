@@ -6,11 +6,11 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace Foodoku.Migrations
+namespace Foodoku.Migrations.FoodokuDb
 {
     [DbContext(typeof(FoodokuDbContext))]
-    [Migration("20200125023310_TableReDo2")]
-    partial class TableReDo2
+    [Migration("20200128174915_DistinctPantry")]
+    partial class DistinctPantry
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -34,14 +34,14 @@ namespace Foodoku.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("TEXT");
 
-                    b.Property<int?>("UnitOfMeasurementID")
+                    b.Property<int?>("UnitOfMeasurementID1")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("ID");
 
                     b.HasIndex("GroceryItemLocationID");
 
-                    b.HasIndex("UnitOfMeasurementID");
+                    b.HasIndex("UnitOfMeasurementID1");
 
                     b.ToTable("FoodItem");
 
@@ -85,7 +85,7 @@ namespace Foodoku.Migrations
 
                     b.HasKey("ID");
 
-                    b.ToTable("Recipes");
+                    b.ToTable("Recipe");
                 });
 
             modelBuilder.Entity("Foodoku.Models.RecipeIngredient", b =>
@@ -100,7 +100,7 @@ namespace Foodoku.Migrations
 
                     b.HasIndex("IngredientID");
 
-                    b.ToTable("RecipeIngredients");
+                    b.ToTable("RecipeIngredient");
                 });
 
             modelBuilder.Entity("Foodoku.Models.UnitOfMeasurement", b =>
@@ -114,27 +114,59 @@ namespace Foodoku.Migrations
 
                     b.HasKey("ID");
 
-                    b.ToTable("UnitOfMeasurements");
+                    b.ToTable("UnitOfMeasurement");
                 });
 
-            modelBuilder.Entity("Foodoku.Models.User", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUser", b =>
                 {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
+                    b.Property<string>("Id")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("AccessFailedCount")
                         .HasColumnType("INTEGER");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Email")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Password")
+                    b.Property<bool>("EmailConfirmed")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("LockoutEnabled")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTimeOffset?>("LockoutEnd")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Username")
+                    b.Property<string>("NormalizedEmail")
                         .HasColumnType("TEXT");
 
-                    b.HasKey("ID");
+                    b.Property<string>("NormalizedUserName")
+                        .HasColumnType("TEXT");
 
-                    b.ToTable("Users");
+                    b.Property<string>("PasswordHash")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool>("PhoneNumberConfirmed")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("SecurityStamp")
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool>("TwoFactorEnabled")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("UserName")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("IdentityUser");
                 });
 
             modelBuilder.Entity("Foodoku.Models.GroceryItem", b =>
@@ -150,7 +182,12 @@ namespace Foodoku.Migrations
                     b.Property<int>("LocationID")
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("UserId")
+                        .HasColumnType("TEXT");
+
                     b.HasIndex("LocationID");
+
+                    b.HasIndex("UserId");
 
                     b.HasDiscriminator().HasValue("GroceryItem");
                 });
@@ -162,10 +199,10 @@ namespace Foodoku.Migrations
                     b.Property<string>("Quantity")
                         .HasColumnType("TEXT");
 
-                    b.Property<int?>("UnitOfMeasurementID1")
+                    b.Property<int>("UnitOfMeasurementID")
                         .HasColumnType("INTEGER");
 
-                    b.HasIndex("UnitOfMeasurementID1");
+                    b.HasIndex("UnitOfMeasurementID");
 
                     b.HasDiscriminator().HasValue("Ingredient");
                 });
@@ -178,7 +215,7 @@ namespace Foodoku.Migrations
 
                     b.HasOne("Foodoku.Models.UnitOfMeasurement", null)
                         .WithMany("FoodItems")
-                        .HasForeignKey("UnitOfMeasurementID");
+                        .HasForeignKey("UnitOfMeasurementID1");
                 });
 
             modelBuilder.Entity("Foodoku.Models.RecipeIngredient", b =>
@@ -203,13 +240,19 @@ namespace Foodoku.Migrations
                         .HasForeignKey("LocationID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("Foodoku.Models.Ingredient", b =>
                 {
                     b.HasOne("Foodoku.Models.UnitOfMeasurement", "UnitOfMeasurement")
                         .WithMany()
-                        .HasForeignKey("UnitOfMeasurementID1");
+                        .HasForeignKey("UnitOfMeasurementID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

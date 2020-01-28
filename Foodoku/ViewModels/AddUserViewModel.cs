@@ -26,14 +26,5 @@ namespace Foodoku.ViewModels
 
         public AddUserViewModel() { }
 
-        public User CreateUser()
-        {
-            return new User
-            {
-                Username = this.Username,
-                Email = this.Email,
-                Password = this.Password
-            };
-        }
     }
 }

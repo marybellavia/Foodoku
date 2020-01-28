@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Identity;
 
 namespace Foodoku.Models
 {
@@ -20,6 +21,9 @@ namespace Foodoku.Models
 
         public GroceryItemLocation Location { get; set; }
         public int LocationID { get; set; }
+
+        //identity
+        public IdentityUser User { get; set; }
 
         public GroceryItem()
         {

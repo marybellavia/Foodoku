@@ -8,6 +8,7 @@ using Foodoku.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -19,64 +20,86 @@ namespace Foodoku.Controllers
     {
         // this private field allows controller to access the database tables
         private readonly FoodokuDbContext context;
+        //usermanager and signin stuffff
+        private readonly UserManager<IdentityUser> _userManager;
+        private readonly SignInManager<IdentityUser> _signInManager;
+
         // actually setting value to this private field
-        public PantryController(FoodokuDbContext dbContext)
+        public PantryController(FoodokuDbContext dbContext, UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager)
         {
             context = dbContext;
+            _userManager = userManager;
+            _signInManager = signInManager;
         }
 
         // GET: /<controller>/
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            // seeding the database if it is empty
-            context.Database.EnsureCreated();
-            var testLocation = context.Locations.FirstOrDefault(b => b.Name == "Dry Storage");
-            if (testLocation == null)
+            if (User.Identity.IsAuthenticated)
             {
-                context.Locations.Add(new GroceryItemLocation { Name = "Dry Storage" });
-                context.Locations.Add(new GroceryItemLocation { Name = "Fridge" });
-                context.Locations.Add(new GroceryItemLocation { Name = "Freezer" });
-                context.Locations.Add(new GroceryItemLocation { Name = "Deep Freeze" });
+                // seeding the database if it is empty
+                context.Database.EnsureCreated();
+                var testLocation = context.Locations.FirstOrDefault(b => b.Name == "Dry Storage");
+                if (testLocation == null)
+                {
+                    context.Locations.Add(new GroceryItemLocation { Name = "Dry Storage" });
+                    context.Locations.Add(new GroceryItemLocation { Name = "Fridge" });
+                    context.Locations.Add(new GroceryItemLocation { Name = "Freezer" });
+                    context.Locations.Add(new GroceryItemLocation { Name = "Deep Freeze" });
+                }
+                context.SaveChanges();
+
+                var currentUser = await _userManager.GetUserAsync(HttpContext.User);
+                // creating viewmodel for forms and pantry list
+                AddPantryItemViewModel viewModel = new AddPantryItemViewModel(context.Locations.ToList());
+                viewModel.PantryList = context.GroceryItems.Where(g => g.IsInPantry == true).Where(u => u.User == currentUser).ToList();
+
+                return View(viewModel);
             }
-            context.SaveChanges();
 
-            // creating viewmodel for forms and pantry list
-            AddPantryItemViewModel viewModel = new AddPantryItemViewModel(context.Locations.ToList());
-            viewModel.PantryList = context.GroceryItems.Where(g => g.IsInPantry == true).ToList();
+            return Redirect("/UserSignupLogin/Index");
 
-            return View(viewModel);
         }
 
         [HttpPost]
-        public IActionResult AddToPantry(AddPantryItemViewModel viewModel)
+        public async Task<IActionResult> AddToPantry(AddPantryItemViewModel viewModel)
         {
-            // checking if model is valid
-            if (ModelState.IsValid)
+            if (User.Identity.IsAuthenticated)
             {
-                GroceryItemLocation newLocation =
-                context.Locations.Single
-                (c => c.ID == viewModel.GroceryItemLocationID);
-
-                //creating new pantry item for list
-                GroceryItem newPantryItem = new GroceryItem()
+                // checking if model is valid
+                if (ModelState.IsValid)
                 {
-                    Name = viewModel.Name,
-                    GroceryNote = viewModel.GroceryNote,
-                    IsInPantry = true,
-                    LocationID = newLocation.ID,
-                };
+                    GroceryItemLocation newLocation =
+                    context.Locations.Single
+                    (c => c.ID == viewModel.GroceryItemLocationID);
 
-                // adding and updating database with object
-                context.GroceryItems.Add(newPantryItem);
-                context.SaveChanges();
+                    var currentUser = await _userManager.GetUserAsync(HttpContext.User);
 
-                return Redirect("/Pantry");
+                    //creating new pantry item for list
+                    GroceryItem newPantryItem = new GroceryItem()
+                    {
+                        Name = viewModel.Name,
+                        GroceryNote = viewModel.GroceryNote,
+                        IsInPantry = true,
+                        LocationID = newLocation.ID,
+                        User = currentUser
+                    };
+
+                    // adding and updating database with object
+                    context.GroceryItems.Add(newPantryItem);
+                    context.SaveChanges();
+
+                    return Redirect("/Pantry");
+                }
+
+                AddPantryItemViewModel newAddViewModel = new AddPantryItemViewModel(context.Locations.ToList());
+                newAddViewModel.PantryList = context.GroceryItems.Where(g => g.IsInPantry == true).ToList();
+
+                return View("Index", newAddViewModel);
             }
 
-            AddPantryItemViewModel newAddViewModel = new AddPantryItemViewModel(context.Locations.ToList());
-            newAddViewModel.PantryList = context.GroceryItems.Where(g => g.IsInPantry == true).ToList();
+            return Redirect("/UserSignupLogin/Index");
 
-            return View("Index", newAddViewModel);
         }
 
         [HttpPost]
@@ -100,12 +123,17 @@ namespace Foodoku.Controllers
 
         public IActionResult EditPantryItem(int pantryId)
         {
-            GroceryItem grocItem = context.GroceryItems.Single(c => c.ID == pantryId);
+            if (User.Identity.IsAuthenticated)
+            {
+                GroceryItem grocItem = context.GroceryItems.Single(c => c.ID == pantryId);
 
-            EditPantryItemViewModel vm = new EditPantryItemViewModel(grocItem, context.Locations.ToList());
-            vm.PantryList = context.GroceryItems.Where(g => g.IsInPantry == true).ToList();
+                EditPantryItemViewModel vm = new EditPantryItemViewModel(grocItem, context.Locations.ToList());
+                vm.PantryList = context.GroceryItems.Where(g => g.IsInPantry == true).ToList();
 
-            return View(vm);
+                return View(vm);
+            }
+
+            return Redirect("/UserSignupLogin/Index");
         }
 
         [HttpPost]

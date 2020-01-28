@@ -1,11 +1,37 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Foodoku.Migrations
+namespace Foodoku.Migrations.FoodokuDb
 {
-    public partial class TableReDo2 : Migration
+    public partial class DistinctPantry : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "IdentityUser",
+                columns: table => new
+                {
+                    Id = table.Column<string>(nullable: false),
+                    UserName = table.Column<string>(nullable: true),
+                    NormalizedUserName = table.Column<string>(nullable: true),
+                    Email = table.Column<string>(nullable: true),
+                    NormalizedEmail = table.Column<string>(nullable: true),
+                    EmailConfirmed = table.Column<bool>(nullable: false),
+                    PasswordHash = table.Column<string>(nullable: true),
+                    SecurityStamp = table.Column<string>(nullable: true),
+                    ConcurrencyStamp = table.Column<string>(nullable: true),
+                    PhoneNumber = table.Column<string>(nullable: true),
+                    PhoneNumberConfirmed = table.Column<bool>(nullable: false),
+                    TwoFactorEnabled = table.Column<bool>(nullable: false),
+                    LockoutEnd = table.Column<DateTimeOffset>(nullable: true),
+                    LockoutEnabled = table.Column<bool>(nullable: false),
+                    AccessFailedCount = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_IdentityUser", x => x.Id);
+                });
+
             migrationBuilder.CreateTable(
                 name: "Locations",
                 columns: table => new
@@ -20,7 +46,7 @@ namespace Foodoku.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Recipes",
+                name: "Recipe",
                 columns: table => new
                 {
                     ID = table.Column<int>(nullable: false)
@@ -33,11 +59,11 @@ namespace Foodoku.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Recipes", x => x.ID);
+                    table.PrimaryKey("PK_Recipe", x => x.ID);
                 });
 
             migrationBuilder.CreateTable(
-                name: "UnitOfMeasurements",
+                name: "UnitOfMeasurement",
                 columns: table => new
                 {
                     ID = table.Column<int>(nullable: false)
@@ -46,22 +72,7 @@ namespace Foodoku.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_UnitOfMeasurements", x => x.ID);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Users",
-                columns: table => new
-                {
-                    ID = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    Username = table.Column<string>(nullable: true),
-                    Email = table.Column<string>(nullable: true),
-                    Password = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Users", x => x.ID);
+                    table.PrimaryKey("PK_UnitOfMeasurement", x => x.ID);
                 });
 
             migrationBuilder.CreateTable(
@@ -73,12 +84,13 @@ namespace Foodoku.Migrations
                     Name = table.Column<string>(nullable: true),
                     Discriminator = table.Column<string>(nullable: false),
                     GroceryItemLocationID = table.Column<int>(nullable: true),
-                    UnitOfMeasurementID = table.Column<int>(nullable: true),
+                    UnitOfMeasurementID1 = table.Column<int>(nullable: true),
                     IsInPantry = table.Column<bool>(nullable: true),
                     GroceryNote = table.Column<string>(nullable: true),
                     LocationID = table.Column<int>(nullable: true),
+                    UserId = table.Column<string>(nullable: true),
                     Quantity = table.Column<string>(nullable: true),
-                    UnitOfMeasurementID1 = table.Column<int>(nullable: true)
+                    UnitOfMeasurementID = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -90,9 +102,9 @@ namespace Foodoku.Migrations
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_FoodItem_UnitOfMeasurements_UnitOfMeasurementID",
-                        column: x => x.UnitOfMeasurementID,
-                        principalTable: "UnitOfMeasurements",
+                        name: "FK_FoodItem_UnitOfMeasurement_UnitOfMeasurementID1",
+                        column: x => x.UnitOfMeasurementID1,
+                        principalTable: "UnitOfMeasurement",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
@@ -102,15 +114,21 @@ namespace Foodoku.Migrations
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_FoodItem_UnitOfMeasurements_UnitOfMeasurementID1",
-                        column: x => x.UnitOfMeasurementID1,
-                        principalTable: "UnitOfMeasurements",
-                        principalColumn: "ID",
+                        name: "FK_FoodItem_IdentityUser_UserId",
+                        column: x => x.UserId,
+                        principalTable: "IdentityUser",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_FoodItem_UnitOfMeasurement_UnitOfMeasurementID",
+                        column: x => x.UnitOfMeasurementID,
+                        principalTable: "UnitOfMeasurement",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "RecipeIngredients",
+                name: "RecipeIngredient",
                 columns: table => new
                 {
                     RecipeID = table.Column<int>(nullable: false),
@@ -118,17 +136,17 @@ namespace Foodoku.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_RecipeIngredients", x => new { x.RecipeID, x.IngredientID });
+                    table.PrimaryKey("PK_RecipeIngredient", x => new { x.RecipeID, x.IngredientID });
                     table.ForeignKey(
-                        name: "FK_RecipeIngredients_FoodItem_IngredientID",
+                        name: "FK_RecipeIngredient_FoodItem_IngredientID",
                         column: x => x.IngredientID,
                         principalTable: "FoodItem",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_RecipeIngredients_Recipes_RecipeID",
+                        name: "FK_RecipeIngredient_Recipe_RecipeID",
                         column: x => x.RecipeID,
-                        principalTable: "Recipes",
+                        principalTable: "Recipe",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -139,9 +157,9 @@ namespace Foodoku.Migrations
                 column: "GroceryItemLocationID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_FoodItem_UnitOfMeasurementID",
+                name: "IX_FoodItem_UnitOfMeasurementID1",
                 table: "FoodItem",
-                column: "UnitOfMeasurementID");
+                column: "UnitOfMeasurementID1");
 
             migrationBuilder.CreateIndex(
                 name: "IX_FoodItem_LocationID",
@@ -149,35 +167,40 @@ namespace Foodoku.Migrations
                 column: "LocationID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_FoodItem_UnitOfMeasurementID1",
+                name: "IX_FoodItem_UserId",
                 table: "FoodItem",
-                column: "UnitOfMeasurementID1");
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_RecipeIngredients_IngredientID",
-                table: "RecipeIngredients",
+                name: "IX_FoodItem_UnitOfMeasurementID",
+                table: "FoodItem",
+                column: "UnitOfMeasurementID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_RecipeIngredient_IngredientID",
+                table: "RecipeIngredient",
                 column: "IngredientID");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "RecipeIngredients");
-
-            migrationBuilder.DropTable(
-                name: "Users");
+                name: "RecipeIngredient");
 
             migrationBuilder.DropTable(
                 name: "FoodItem");
 
             migrationBuilder.DropTable(
-                name: "Recipes");
+                name: "Recipe");
 
             migrationBuilder.DropTable(
                 name: "Locations");
 
             migrationBuilder.DropTable(
-                name: "UnitOfMeasurements");
+                name: "UnitOfMeasurement");
+
+            migrationBuilder.DropTable(
+                name: "IdentityUser");
         }
     }
 }
