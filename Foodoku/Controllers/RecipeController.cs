@@ -21,20 +21,13 @@ namespace Foodoku.Controllers
             context = dbContext;
         }
 
-        private static RecipeData recipeData;
-
-        static RecipeController()
-        {
-            recipeData = RecipeData.GetInstance();
-        }
-
 
         // GET: /<controller>/
-        public IActionResult Index(int id)
+        public IActionResult Index()
         {
-            Recipe recipe = RecipeData.GetInstance().Find(id);
+            ViewAllRecipeViewModel viewModel = new ViewAllRecipeViewModel();
 
-            return View(recipe);
+            return View(viewModel);
         }
     }
 }
