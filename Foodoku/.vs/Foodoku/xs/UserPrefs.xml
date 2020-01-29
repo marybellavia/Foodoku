@@ -1,6 +1,6 @@
 ﻿<Properties StartupConfiguration="{92F151BE-9035-43CE-BB79-3EA3D6DA6F55}|Default">
   <MonoDevelop.Ide.ItemProperties.Foodoku PreferredExecutionTarget="/Applications/Google Chrome.app" />
-  <MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench ActiveDocument="Controllers/RecipeController.cs">
     <Files>
       <File FileName="Controllers/RecipeController.cs" Line="1" Column="1" />
     </Files>
