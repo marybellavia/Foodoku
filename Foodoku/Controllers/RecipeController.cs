@@ -21,13 +21,28 @@ namespace Foodoku.Controllers
             context = dbContext;
         }
 
-
         // GET: /<controller>/
         public IActionResult Index()
         {
-            ViewAllRecipeViewModel viewModel = new ViewAllRecipeViewModel();
+            ViewAllRecipeViewModel VM = new ViewAllRecipeViewModel();
+            VM.Recipes = context.Recipes.ToList();
 
-            return View(viewModel);
+            return View(VM);
+        }
+
+        public IActionResult ViewRecipe(int recipeId)
+        {
+            ViewRecipeViewModel VM = new ViewRecipeViewModel();
+            Recipe currentRecipe = context.Recipes.Single(r => r.ID == recipeId);
+
+            string[] ingredientsArray = currentRecipe.Ingredients.Split('$', 100);
+            string[] instructionsArray = currentRecipe.Instructions.Split('$', 100);
+
+            VM.Recipe = currentRecipe;
+            VM.IngredientsArray = ingredientsArray;
+            VM.InstructionsArray = instructionsArray;
+
+            return View(VM);
         }
     }
 }

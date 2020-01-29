@@ -1,0 +1,27 @@
+﻿@model Foodoku.ViewModels.ViewRecipeViewModel
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="jumbotron bg-danger text-light">
+                    <h3 class="display-4 text-light text-center">@Model.Recipe.Title</h3>
+                    <p class="lead">@Model.Recipe.Summary</p>
+                    <p>Yield: @Model.Recipe.Yield</p>
+
+                    <ul>
+                        @for (int i = 0; i < (Model.IngredientsArray.Length - 1); i++)
+                        {
+                            <li>@Model.IngredientsArray[i]</li>
+                        }
+                    </ul>
+                    <ol>
+                        @for (int i = 0; i < (Model.InstructionsArray.Length - 1); i++)
+                        {
+                            <li>@Model.InstructionsArray[i]</li>
+                        }
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>

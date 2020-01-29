@@ -13,7 +13,7 @@
                     <div class="card">
                         <h3 class="card-header bg-primary text-light text-center">Login</h3>
                         <div class="card-body">
-                            <form asp-controller="UserSignupLogin" asp-action="Login" method="post">
+                            <form asp-controller="UserSignupLogin" asp-action="LoginUser" method="post">
                                 <div class="card-text row form-group form-inline">
                                     <label asp-for="@Model.LoginUserVM.Username" class="col-4 col-form-label">Username</label>
                                     <input asp-for="@Model.LoginUserVM.Username" type="text" class="form-control" placeholder="Username" />

@@ -20,7 +20,7 @@ namespace Foodoku.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            return Redirect("/Pantry");
         }
 
         public IActionResult Privacy()

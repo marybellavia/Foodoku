@@ -99,6 +99,6 @@
 /Users/marybellavia/code/codecamp/FOODOKU/Foodoku/Foodoku/obj/Debug/netcoreapp3.1/Razor/Views/Grocery/EditGroceryItem.cshtml.g.cs
 /Users/marybellavia/code/codecamp/FOODOKU/Foodoku/Foodoku/obj/Debug/netcoreapp3.1/Razor/Views/Recipe/Index.cshtml.g.cs
 /Users/marybellavia/code/codecamp/FOODOKU/Foodoku/Foodoku/obj/Debug/netcoreapp3.1/Razor/Views/Recipe/RecipeCompare.cshtml.g.cs
-/Users/marybellavia/code/codecamp/FOODOKU/Foodoku/Foodoku/obj/Debug/netcoreapp3.1/Razor/Views/Recipe/RecipeView.cshtml.g.cs
 /Users/marybellavia/code/codecamp/FOODOKU/Foodoku/Foodoku/obj/Debug/netcoreapp3.1/Razor/Views/Recipe/SearchResults.cshtml.g.cs
 /Users/marybellavia/code/codecamp/FOODOKU/Foodoku/Foodoku/obj/Debug/netcoreapp3.1/Razor/Views/MealPlanner/Index.cshtml.g.cs
+/Users/marybellavia/code/codecamp/FOODOKU/Foodoku/Foodoku/obj/Debug/netcoreapp3.1/Razor/Views/Recipe/ViewRecipe.cshtml.g.cs

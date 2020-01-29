@@ -1,11 +1,27 @@
 ﻿@model Foodoku.ViewModels.ViewAllRecipeViewModel
-@{ ViewBag.title = "All Recipes"; }
 
-<h1>@ViewBag.title</h1>
+@{ ViewBag.title0 = "All Recipes"; }
 
-<ul>
-    @foreach (var recipe in Model.Recipes)
-    {
-        <li>@recipe.Title: @recipe.Description</li>
-    }
-</ul>
+    <div class="container">
+        <div class="row">
+            <div class="col-6">
+                <div class="card">
+                    <h3 class="card-header bg-danger text-light text-center">@ViewBag.title0</h3>
+                    <div class="card-body bg-danger text-light">
+                        <div class="list-group">
+                            @foreach (var recipe in Model.Recipes)
+                            {
+                                <div class="list-group-item align-items-center bg-primary text-light">
+                                    <div class="d-flex w-100 justify-content-between">
+                                        <h5 class="mb-1">@recipe.Title</h5>
+                                        <a class="btn btn-sm btn-dark text-light" asp-controller="Recipe" asp-action="ViewRecipe" asp-route-recipeId="@recipe.ID">View Full Recipe</a>
+                                    </div>
+                                    <p>@recipe.Summary</p>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

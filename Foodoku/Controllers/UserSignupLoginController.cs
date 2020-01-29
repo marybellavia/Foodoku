@@ -33,14 +33,14 @@ namespace Foodoku.Controllers
         {
             if (ModelState.IsValid)
             {
-                // creating new user object for database
-                User newUser = VM.AddUserVM.CreateUser();
+                //// creating new user object for database
+                //User newUser = VM.AddUserVM.CreateUser();
 
-                // adding the new user to the database and saving changes
-                context.Users.Add(newUser);
-                context.SaveChanges();
+                //// adding the new user to the database and saving changes
+                //context.Users.Add(newUser);
+                //context.SaveChanges();
 
-                // return
+                //// return
                 return Redirect("/Pantry");
             }
 

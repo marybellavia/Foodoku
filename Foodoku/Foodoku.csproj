@@ -7,6 +7,12 @@
 
 
   <ItemGroup>
+    <None Remove="mono_crash.mem.19107.1114a65c0.blob" />
+    <None Remove="mono_crash.mem.19107.700008c7f000.blob" />
+    <None Remove="mono_crash.mem.19107.1.blob" />
+    <None Remove="mono_crash.mem.19107.70000938e000.blob" />
+  </ItemGroup>
+  <ItemGroup>
     <None Update="app.db" CopyToOutputDirectory="PreserveNewest" ExcludeFromSingleFile="true" />
   </ItemGroup>
 
@@ -33,5 +39,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Remove="wwwroot\lib\bootstrap\dist\css\bootstrap.css" />
+    <Content Remove="mono_crash.42f6ec106.0.json" />
   </ItemGroup>
 </Project>
