@@ -1,31 +1,22 @@
 ﻿<Properties StartupConfiguration="{92F151BE-9035-43CE-BB79-3EA3D6DA6F55}|Default">
   <MonoDevelop.Ide.ItemProperties.Foodoku PreferredExecutionTarget="/Applications/Google Chrome.app" />
-  <MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench ActiveDocument="Startup.cs">
+    <Files>
+      <File FileName="Data/FoodokuDbContext.cs" Line="11" Column="61" />
+      <File FileName="Startup.cs" Line="19" Column="29" />
+      <File FileName="Data/SeedData.cs" Line="15" Column="1" />
+      <File FileName="Authorization/AdminUserAuthorizationHandler.cs" Line="29" Column="14" />
+      <File FileName="Authorization/CheeseOperation.cs" Line="30" Column="68" />
+    </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="Foodoku" expanded="True">
             <Node name="Foodoku" expanded="True">
-              <Node name="Controllers" expanded="True">
-                <Node name="RecipeController.cs" selected="True" />
-              </Node>
+              <Node name="Authorization" expanded="True" />
               <Node name="Data" expanded="True" />
               <Node name="Models" expanded="True" />
-              <Node name="ViewModels" expanded="True" />
-              <Node name="Views" expanded="True">
-                <Node name="Pantry" expanded="True" />
-                <Node name="Recipe" expanded="True" />
-                <Node name="Shared" expanded="True" />
-              </Node>
-              <Node name="wwwroot" expanded="True">
-                <Node name="lib" expanded="True">
-                  <Node name="bootstrap" expanded="True">
-                    <Node name="dist" expanded="True">
-                      <Node name="css" expanded="True" />
-                    </Node>
-                  </Node>
-                </Node>
-              </Node>
+              <Node name="Startup.cs" selected="True" />
             </Node>
           </Node>
         </State>

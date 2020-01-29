@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Foodoku.Models
 {
-    public abstract class FoodItem
+    public abstract class FoodItem : BindingAgent
     {
         public string Name { get; set; }
         public int ID { get; set; }

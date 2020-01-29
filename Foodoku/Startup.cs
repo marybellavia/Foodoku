@@ -14,6 +14,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.Authorization;
+using Foodoku.Authorization;
+using CheeseMVC.Authorization;
 
 namespace Foodoku
 {
@@ -37,18 +41,30 @@ namespace Foodoku
                 options.UseSqlite(
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+                .AddRoles<IdentityRole>()
+                .AddEntityFrameworkStores<FoodokuDbContext>();
 
             // for session
             services.AddSession(options => {
-                options.IdleTimeout = TimeSpan.FromMinutes(30);
                 options.Cookie.HttpOnly = true;
+                // make the session cookie essential
+                options.Cookie.IsEssential = true;
 
             });
 
 
-            services.AddControllersWithViews();
+            services.AddControllersWithViews(config =>
+            {
+                var policy = new AuthorizationPolicyBuilder()
+                             .RequireAuthenticatedUser()
+                             .Build();
+                config.Filters.Add(new AuthorizeFilter(policy));
+            });
+
             services.AddRazorPages();
+
+            services.AddScoped<IAuthorizationHandler, FoodieUserAuthorizationHandler>();
+            services.AddScoped<IAuthorizationHandler, AdminUserAuthorizationHandler>();
 
         }
 
@@ -73,17 +89,17 @@ namespace Foodoku
 
             app.UseAuthentication();
             app.UseAuthorization();
-            // session
-            app.UseSession();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=UserSignupLogin}/{action=Index}/{id?}");
+                    pattern: "{controller=Pantry}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
             });
- 
+
+            SeedData.Initialize(context, userManager, roleManager).Wait();
+
         }
     }
 }

@@ -1,10 +1,12 @@
 ﻿using System;
 using Foodoku.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace Foodoku.Data
 {
-    public class FoodokuDbContext : DbContext
+    public class FoodokuDbContext : IdentityDbContext<IdentityUser>
     {
         public DbSet<GroceryItem> GroceryItems { get; set; }
         public DbSet<GroceryItemLocation> Locations { get; set; }
