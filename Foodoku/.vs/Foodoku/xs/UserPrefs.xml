@@ -2,8 +2,7 @@
   <MonoDevelop.Ide.ItemProperties.Foodoku PreferredExecutionTarget="/Applications/Google Chrome.app" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Controllers/GroceryController.cs">
     <Files>
-      <File FileName="Models/FoodItem.cs" Line="1" Column="1" />
-      <File FileName="Models/BindingAgent.cs" Line="1" Column="1" />
+      <File FileName="Models/GroceryItemLocation.cs" Line="1" Column="1" />
       <File FileName="Controllers/GroceryController.cs" Line="1" Column="1" />
     </Files>
     <Pads>
@@ -11,13 +10,6 @@
         <State name="__root__">
           <Node name="Foodoku" expanded="True">
             <Node name="Foodoku" expanded="True">
-              <Node name="Areas" expanded="True">
-                <Node name="Identity" expanded="True">
-                  <Node name="Pages" expanded="True">
-                    <Node name="Account" expanded="True" />
-                  </Node>
-                </Node>
-              </Node>
               <Node name="Authorization" expanded="True" />
               <Node name="Controllers" expanded="True">
                 <Node name="GroceryController.cs" selected="True" />
@@ -25,9 +17,7 @@
               <Node name="Data" expanded="True" />
               <Node name="Migrations" expanded="True" />
               <Node name="Models" expanded="True" />
-              <Node name="Views" expanded="True">
-                <Node name="Shared" expanded="True" />
-              </Node>
+              <Node name="ViewModels" expanded="True" />
             </Node>
           </Node>
         </State>

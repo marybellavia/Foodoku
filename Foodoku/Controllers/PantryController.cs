@@ -36,10 +36,6 @@ namespace Foodoku.Controllers
         // GET: /<controller>/
         public IActionResult Index()
         {
-            // getting all pantry items
-            var pantryItems = from p in Context.Recipes
-                              select p;
-
             var currentUserId = UserManager.GetUserId(User);
 
             // creating viewmodel for forms and pantry list
@@ -58,17 +54,13 @@ namespace Foodoku.Controllers
             // checking if model is valid
             if (ModelState.IsValid)
             {
-                GroceryItemLocation newLocation =
-                Context.Locations.Single
-                (p => p.ID == viewModel.GroceryItemLocationID);
-
                 //creating new pantry item for list
                 GroceryItem newPantryItem = new GroceryItem()
                 {
                     Name = viewModel.Name,
                     GroceryNote = viewModel.GroceryNote,
                     IsInPantry = true,
-                    LocationID = newLocation.ID,
+                    LocationID = viewModel.GroceryItemLocationID,
                     UserID = currentUserId
                 };
 
