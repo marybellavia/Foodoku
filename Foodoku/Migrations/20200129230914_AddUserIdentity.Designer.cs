@@ -3,14 +3,16 @@ using System;
 using Foodoku.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Foodoku.Migrations
 {
     [DbContext(typeof(FoodokuDbContext))]
-    partial class FoodokuDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200129230914_AddUserIdentity")]
+    partial class AddUserIdentity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Authorization.Infrastructure;
 using Microsoft.AspNetCore.Identity;
 
-namespace CheeseMVC.Authorization
+namespace Foodoku.Authorization
 {
     public class AdminUserAuthorizationHandler
         : AuthorizationHandler<OperationAuthorizationRequirement, BindingAgent>

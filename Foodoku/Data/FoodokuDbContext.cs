@@ -12,16 +12,16 @@ namespace Foodoku.Data
         public DbSet<GroceryItemLocation> Locations { get; set; }
         public DbSet<Recipe> Recipes { get; set; }
 
-        //protected override void OnModelCreating(ModelBuilder modelBuilder)
-        //{
-        //    // for join table
-        //    modelBuilder.Entity<RecipeIngredient>()
-        //        .HasKey(c => new { c.RecipeID, c.IngredientID });
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            //// for join table
+            //modelBuilder.Entity<RecipeIngredient>()
+            //    .HasKey(c => new { c.RecipeID, c.IngredientID });
+            base.OnModelCreating(modelBuilder);
+        }
 
-        //}
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        => optionsBuilder.UseSqlite("Data Source=Foodoku.db");
-
+        public FoodokuDbContext(DbContextOptions<FoodokuDbContext> options)
+            : base(options)
+        { }
     }
 }

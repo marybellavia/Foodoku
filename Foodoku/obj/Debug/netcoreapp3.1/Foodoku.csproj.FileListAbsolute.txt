@@ -2,7 +2,6 @@
 /Users/marybellavia/code/codecamp/FOODOKU/Foodoku/Foodoku/bin/Debug/netcoreapp3.1/appsettings.json
 /Users/marybellavia/code/codecamp/FOODOKU/Foodoku/Foodoku/bin/Debug/netcoreapp3.1/Properties/launchSettings.json
 /Users/marybellavia/code/codecamp/FOODOKU/Foodoku/Foodoku/bin/Debug/netcoreapp3.1/Foodoku.StaticWebAssets.xml
-/Users/marybellavia/code/codecamp/FOODOKU/Foodoku/Foodoku/bin/Debug/netcoreapp3.1/app.db
 /Users/marybellavia/code/codecamp/FOODOKU/Foodoku/Foodoku/bin/Debug/netcoreapp3.1/Foodoku
 /Users/marybellavia/code/codecamp/FOODOKU/Foodoku/Foodoku/bin/Debug/netcoreapp3.1/Foodoku.deps.json
 /Users/marybellavia/code/codecamp/FOODOKU/Foodoku/Foodoku/bin/Debug/netcoreapp3.1/Foodoku.runtimeconfig.json
@@ -90,8 +89,6 @@
 /Users/marybellavia/code/codecamp/FOODOKU/Foodoku/Foodoku/obj/Debug/netcoreapp3.1/Razor/Views/Pantry/Index.cshtml.g.cs
 /Users/marybellavia/code/codecamp/FOODOKU/Foodoku/Foodoku/bin/Debug/netcoreapp3.1/System.Security.Cryptography.Pkcs.dll
 /Users/marybellavia/code/codecamp/FOODOKU/Foodoku/Foodoku/bin/Debug/netcoreapp3.1/runtimes/win/lib/netcoreapp2.1/System.Security.Cryptography.Pkcs.dll
-/Users/marybellavia/code/codecamp/FOODOKU/Foodoku/Foodoku/obj/Debug/netcoreapp3.1/Razor/Views/UserSignupLogin/Index.cshtml.g.cs
-/Users/marybellavia/code/codecamp/FOODOKU/Foodoku/Foodoku/obj/Debug/netcoreapp3.1/Razor/Views/UserSignupLogin/Success.cshtml.g.cs
 /Users/marybellavia/code/codecamp/FOODOKU/Foodoku/Foodoku/obj/Debug/netcoreapp3.1/Razor/Views/Pantry/EditPantryItem.cshtml.g.cs
 /Users/marybellavia/code/codecamp/FOODOKU/Foodoku/Foodoku/obj/Debug/netcoreapp3.1/Razor/Views/Grocery/Index.cshtml.g.cs
 /Users/marybellavia/code/codecamp/FOODOKU/Foodoku/Foodoku/obj/Debug/netcoreapp3.1/Razor/Views/Grocery/EditGroceryItem.cshtml.g.cs
@@ -211,3 +208,4 @@
 /Users/marybellavia/code/codecamp/FOODOKU/Foodoku/Foodoku/obj/Debug/netcoreapp3.1/Razor/Areas/Identity/Pages/_ValidationScriptsPartial.cshtml.g.cs
 /Users/marybellavia/code/codecamp/FOODOKU/Foodoku/Foodoku/obj/Debug/netcoreapp3.1/Razor/Areas/Identity/Pages/_ViewImports.cshtml.g.cs
 /Users/marybellavia/code/codecamp/FOODOKU/Foodoku/Foodoku/obj/Debug/netcoreapp3.1/Razor/Views/Shared/_CookieConsentPartial.cshtml.g.cs
+/Users/marybellavia/code/codecamp/FOODOKU/Foodoku/Foodoku/bin/Debug/netcoreapp3.1/mono_crash.91852a820.0.json

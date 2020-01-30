@@ -17,7 +17,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Foodoku.Authorization;
-using CheeseMVC.Authorization;
 
 namespace Foodoku
 {
@@ -34,10 +33,8 @@ namespace Foodoku
         public void ConfigureServices(IServiceCollection services)
         {
             // my database
-            services.AddEntityFrameworkSqlite().AddDbContext<FoodokuDbContext>();
-
             // identity stuff
-            services.AddDbContext<ApplicationDbContext>(options =>
+            services.AddEntityFrameworkSqlite().AddDbContext<FoodokuDbContext>(options =>
                 options.UseSqlite(
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
@@ -69,7 +66,9 @@ namespace Foodoku
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env,
+            FoodokuDbContext context, RoleManager<IdentityRole> roleManager,
+            UserManager<IdentityUser> userManager)
         {
             if (env.IsDevelopment())
             {

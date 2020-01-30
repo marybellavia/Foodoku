@@ -13,10 +13,6 @@
     <None Remove="mono_crash.mem.19107.70000938e000.blob" />
   </ItemGroup>
   <ItemGroup>
-    <None Update="app.db" CopyToOutputDirectory="PreserveNewest" ExcludeFromSingleFile="true" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.1" />
@@ -43,5 +39,8 @@
   <ItemGroup>
     <Content Remove="wwwroot\lib\bootstrap\dist\css\bootstrap.css" />
     <Content Remove="mono_crash.42f6ec106.0.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Controllers\UserSignupLoginController.cs" />
   </ItemGroup>
 </Project>
