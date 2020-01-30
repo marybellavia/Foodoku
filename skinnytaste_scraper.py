@@ -24,7 +24,7 @@ class SkinnyTasteScraper:
         for instruct in self.Soup.find_all('li', {'class': 'wprm-recipe-instruction'}):
             instructions_list.append(instruct.text)
         for i in range(len(instructions_list)):
-            steps_string += f"{(i+1)}. {instructions_list[i]}"
+            steps_string += f"{instructions_list[i]}$"
         return steps_string
 
     # def write_to_cvs(self, writer):
@@ -46,23 +46,23 @@ def main():
     recipe_list = [brown_rice, deviled_eggs, butternut_mac, banana_bread, buff_chx_rolls, turkey_chili_squash, butternut_lasagna, pineapple_fried_rice, salmon_burgers, crab_cakes]
 
     # connecting to the database  
-    connection = sqlite3.connect("skinnyTaste.db") 
+    connection = sqlite3.connect("Foodoku.db") 
     # cursor  
-    crsr = connection.cursor() 
-    # SQL command to create a table in the database 
-    sql_command = """CREATE TABLE recipes (  
-    RecipeID INTEGER PRIMARY KEY,  
-    Title VARCHAR(10000),  
-    Summary VARCHAR(10000),  
-    Yield VARCHAR(5),  
-    Ingredients VARCHAR(10000),
-    Instructions VARCHAR(10000));"""
-    # execute the statement 
-    crsr.execute(sql_command) 
+    crsr = connection.cursor()
+    # # SQL command to create a table in the database 
+    # sql_command = """CREATE TABLE recipes (  
+    # RecipeID INTEGER PRIMARY KEY,  
+    # Title VARCHAR(10000),  
+    # Summary VARCHAR(10000),  
+    # Yield VARCHAR(5),  
+    # Ingredients VARCHAR(10000),
+    # Instructions VARCHAR(10000));"""
+    # # execute the statement 
+    # crsr.execute(sql_command) 
     i = 1
     for recipe in recipe_list:
         # SQL command to insert the data in the table 
-        sql_command = f"""INSERT INTO recipes VALUES ({i}, "{recipe.RecipeTitle}", "{recipe.Summary}", "{recipe.Yield}", "{recipe.Ingredients}", "{recipe.Instructions}");"""
+        sql_command = f"""INSERT INTO Recipes VALUES ({i}, "{recipe.RecipeTitle}", "{recipe.Summary}", "{recipe.Yield}", "{recipe.Instructions}", "{recipe.Ingredients}");"""
         crsr.execute(sql_command) 
         i += 1
         
