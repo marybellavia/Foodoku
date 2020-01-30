@@ -1,9 +1,10 @@
 ﻿<Properties StartupConfiguration="{92F151BE-9035-43CE-BB79-3EA3D6DA6F55}|Default">
   <MonoDevelop.Ide.ItemProperties.Foodoku PreferredExecutionTarget="/Applications/Google Chrome.app" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Models/BindingAgent.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Controllers/GroceryController.cs">
     <Files>
       <File FileName="Models/FoodItem.cs" Line="1" Column="1" />
       <File FileName="Models/BindingAgent.cs" Line="1" Column="1" />
+      <File FileName="Controllers/GroceryController.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -18,12 +19,12 @@
                 </Node>
               </Node>
               <Node name="Authorization" expanded="True" />
-              <Node name="Controllers" expanded="True" />
+              <Node name="Controllers" expanded="True">
+                <Node name="GroceryController.cs" selected="True" />
+              </Node>
               <Node name="Data" expanded="True" />
               <Node name="Migrations" expanded="True" />
-              <Node name="Models" expanded="True">
-                <Node name="BindingAgent.cs" selected="True" />
-              </Node>
+              <Node name="Models" expanded="True" />
               <Node name="Views" expanded="True">
                 <Node name="Shared" expanded="True" />
               </Node>
