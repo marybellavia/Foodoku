@@ -1,23 +1,20 @@
 ﻿<Properties StartupConfiguration="{92F151BE-9035-43CE-BB79-3EA3D6DA6F55}|Default">
   <MonoDevelop.Ide.ItemProperties.Foodoku PreferredExecutionTarget="/Applications/Google Chrome.app" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Controllers/GroceryController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Models/BindingAgent.cs">
     <Files>
       <File FileName="Models/GroceryItemLocation.cs" Line="1" Column="1" />
-      <File FileName="Controllers/GroceryController.cs" Line="112" Column="1" />
+      <File FileName="Controllers/GroceryController.cs" Line="1" Column="1" />
+      <File FileName="Models/BindingAgent.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="Foodoku" expanded="True">
             <Node name="Foodoku" expanded="True">
-              <Node name="Areas" expanded="True">
-                <Node name="Identity" expanded="True">
-                  <Node name="Pages" expanded="True" />
-                </Node>
+              <Node name="Authorization" expanded="True">
+                <Node name="AdminUserAuthorizationHandler.cs" selected="True" />
               </Node>
-              <Node name="Controllers" expanded="True">
-                <Node name="GroceryController.cs" selected="True" />
-              </Node>
+              <Node name="Controllers" expanded="True" />
               <Node name="Data" expanded="True" />
               <Node name="Migrations" expanded="True" />
               <Node name="Models" expanded="True" />

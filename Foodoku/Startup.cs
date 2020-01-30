@@ -14,6 +14,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.Authorization;
+using Foodoku.Authorization;
 
 namespace Foodoku
 {
@@ -30,30 +33,42 @@ namespace Foodoku
         public void ConfigureServices(IServiceCollection services)
         {
             // my database
-            services.AddEntityFrameworkSqlite().AddDbContext<FoodokuDbContext>();
-
             // identity stuff
-            services.AddDbContext<ApplicationDbContext>(options =>
+            services.AddEntityFrameworkSqlite().AddDbContext<FoodokuDbContext>(options =>
                 options.UseSqlite(
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+                .AddRoles<IdentityRole>()
+                .AddEntityFrameworkStores<FoodokuDbContext>();
 
             // for session
             services.AddSession(options => {
-                options.IdleTimeout = TimeSpan.FromMinutes(30);
                 options.Cookie.HttpOnly = true;
+                // make the session cookie essential
+                options.Cookie.IsEssential = true;
 
             });
 
 
-            services.AddControllersWithViews();
+            services.AddControllersWithViews(config =>
+            {
+                var policy = new AuthorizationPolicyBuilder()
+                             .RequireAuthenticatedUser()
+                             .Build();
+                config.Filters.Add(new AuthorizeFilter(policy));
+            });
+
             services.AddRazorPages();
+
+            services.AddScoped<IAuthorizationHandler, FoodieUserAuthorizationHandler>();
+            services.AddScoped<IAuthorizationHandler, AdminUserAuthorizationHandler>();
 
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env,
+            FoodokuDbContext context, RoleManager<IdentityRole> roleManager,
+            UserManager<IdentityUser> userManager)
         {
             if (env.IsDevelopment())
             {
@@ -73,17 +88,17 @@ namespace Foodoku
 
             app.UseAuthentication();
             app.UseAuthorization();
-            // session
-            app.UseSession();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=UserSignupLogin}/{action=Index}/{id?}");
+                    pattern: "{controller=Pantry}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
             });
- 
+
+            SeedData.Initialize(context, userManager, roleManager).Wait();
+
         }
     }
 }
